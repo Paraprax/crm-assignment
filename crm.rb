@@ -25,14 +25,12 @@ class CRM
     puts '[3] Delete a contact'
     puts '[4] Display all the contacts'
     puts '[5] Search by attribute'
-    puts '[6] Display contact full name'
-    puts '[7] Exit'
+    puts '[6] Exit'
     puts 'Enter a number: '
 
   end
 
-  def full_name(contact)
-    #puts "Contact's full name is #{full_name}"
+  def display_all_contacts
     @@contacts.each do |contact|
       puts contact.full_name
     end
@@ -45,8 +43,7 @@ class CRM
   when 3 then delete_contact
   when 4 then display_all_contacts
   when 5 then search_by_attribute
-  when 6 then full_name(contact)
-  when 7 then quit
+  when 6 then quit
   end
 
   end
@@ -84,17 +81,14 @@ class CRM
     puts 'Update contact Note: '
       note = gets.chomp
 
-    modify = Contact.modify_existing_contact
-
   end
 
   def delete_contact
     puts "Enter email of contact to delete:"
-  end
+    input = gets.chomp
+    
 
-  def display_all_contacts
-    puts "All contacts:"
-    puts @@contacts
+
   end
 
   def search_by_attribute

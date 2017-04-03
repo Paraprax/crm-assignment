@@ -31,7 +31,7 @@ class Contact
   # This method should accept an id as an argument
   # and return the contact who has that id
   def self.find(id)
-    id = gets
+    @id = gets
     return @id
   end
 
@@ -40,7 +40,7 @@ class Contact
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
   def update
-    
+
 
   end
 
