@@ -99,10 +99,7 @@ class CRM
 
   def search_by_attribute
     puts "Enter a contact's first name, last name or other stored info:"
-    input = gets.chomp
     Contact.find_by
-    puts "Contacts found:"
-
   end
 
   def quit

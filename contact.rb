@@ -31,19 +31,31 @@ class Contact
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
   def self.find_by
+        input = gets.chomp
+            puts "Contacts found:"
     @@contacts.each do |contact|
       if contact.first_name == input
-        puts contact.full_info
+        puts contact.print_contact
       elsif contact.last_name == input
-         puts contact.full_info
+         puts contact.print_contact
       elsif contact.email == input
-         puts contact.full_info
+         puts contact.print_contact
       elsif contact.note == input
-         puts contact.full_info
+         puts contact.print_contact
       else
       end
     end
   end
+
+  def self.find(id)
+    @@contacts.each do |contact|
+      if contact.id == id
+        return contact
+      end
+    end
+    return false
+  end
+
 
   # This method should delete all of the contacts
   def self.delete_all
