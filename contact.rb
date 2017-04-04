@@ -47,9 +47,9 @@ class Contact
     end
   end
 
-  def self.find(id)
+  def self.find(input)
     @@contacts.each do |contact|
-      if contact.id == id
+      if contact.email == input
         return contact
       end
     end
@@ -59,6 +59,7 @@ class Contact
 
   # This method should delete all of the contacts
   def self.delete_all
+    @@contacts.clear
   end
 
 
@@ -86,6 +87,10 @@ class Contact
   def update
   end
 
+  def full_name
+    puts "#{first_name} #{last_name}"
+  end
+
   def print_contact
     puts "#{self.first_name} #{self.last_name}, #{self.email}, note: #{self.note}"
   end
@@ -98,9 +103,10 @@ class Contact
 
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
+
   def delete
     @@contacts.delete(self)
-
+    return true
   end
 
   # Feel free to add other methods here, if you need them.

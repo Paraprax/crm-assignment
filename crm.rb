@@ -76,9 +76,9 @@ class CRM
   # end
 
   def find_contact
-    puts "Enter id of contact to find:"
-    id = gets.chomp
-    contact = Contact.find(id)
+    puts "Enter email of contact to find:"
+    input = gets.chomp
+    contact = Contact.find(input)
   end
 
   def delete_contact
