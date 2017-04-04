@@ -58,22 +58,9 @@ class CRM
   end
 
   def modify_existing_contact
-    contact_to_modify = find_contact
-    if contact_to_modify
-      puts "Need method to present attribute to modify"
-    end
+    puts "Enter id of contact to be modified"
+    Contact.find
   end
-
-  # def find_by_email
-  #   puts "Enter email of contact to find:"
-  #   input = gets.chomp
-  #    @@contacts.each do |contact|
-  #      if contact.email == input
-  #         return contact
-  #      end
-  #    end
-  #    return false
-  # end
 
   def find_contact
     puts "Enter email of contact to find:"
@@ -98,7 +85,7 @@ class CRM
   end
 
   def search_by_attribute
-    puts "Enter a contact's first name, last name or other stored info:"
+    puts "Enter a contact's id, first name, last name or other stored info:"
     Contact.find_by
   end
 

@@ -25,7 +25,6 @@ class Contact
     end
   end
 
-
   # This method should work similarly to the find method above
   # but it should allow you to search for a contact using attributes other than id
   # by specifying both the name of the attribute and the value
@@ -42,18 +41,20 @@ class Contact
          puts contact.print_contact
       elsif contact.note == input
          puts contact.print_contact
+       elsif contact.id == input.to_i
+          puts contact.print_contact
       else
       end
     end
   end
 
-  def self.find(input)
+  def self.find
+    input = gets.chomp
     @@contacts.each do |contact|
-      if contact.email == input
+      if contact.id == input
         return contact
       end
     end
-    return false
   end
 
 
@@ -69,7 +70,7 @@ class Contact
   attr_accessor :last_name
   attr_accessor :email
   attr_accessor :note
-  attr_reader :id
+  attr_reader   :id
 
   def initialize(first_name, last_name, email, note)
     @first_name = first_name
@@ -97,7 +98,7 @@ class Contact
 
   def self.print_all_contacts
     @@contacts.each do |contact|
-      puts "#{contact.first_name} #{contact.last_name}, #{contact.email}, note: #{contact.note}"
+      puts "#{contact.id}, #{contact.first_name} #{contact.last_name}, #{contact.email}, note: #{contact.note}"
     end
   end
 
