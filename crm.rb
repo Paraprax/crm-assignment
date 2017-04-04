@@ -2,7 +2,15 @@ require_relative "contact.rb"
 class CRM
   @@contacts=[]
   def initialize
-      end
+       contact1=Contact.new('Parker', 'Johnston', 'pj@email.com', 'dude')
+       contact2=Contact.new('Jane', 'Smith', 'js@email.com', 'gal')
+       contact3=Contact.new('Bill', 'Steel', 'bs@email.com', 'bro')
+       contact4=Contact.new('Mary', 'Doe', 'md@email.com', 'lady')
+       @@contacts << contact1
+       @@contacts << contact2
+       @@contacts << contact3
+       @@contacts << contact4
+  end
 
 
   attr_reader :first_name
@@ -33,22 +41,15 @@ class CRM
   def call_option(user_selected)
   case user_selected
   when 1 then contact=add_new_contact #done
-  when 2 then modify_existing_contact
+  when 2 then modify_existing_contact #unfinished
   when 3 then delete_contact #done
   when 4 then display_all_contacts #done
   when 5 then search_by_attribute #done
   when 6 then quit #not working
-  when 7 then contact=preload_contacts #not working
   end
 
   end
 
- def preload_contacts
-   contact1=Contact.new('Parker', 'Johnston', 'pj@email.com', 'dude')
-   contact2=Contact.new('Jane', 'Smith', 'js@email.com', 'gal')
-   contact3=Contact.new('Bill', 'Steel', 'bs@email.com', 'bro')
-   contact4=Contact.new('Mary', 'Doe', 'md@email.com', 'lady')
- end
 
   def add_new_contact
     puts 'Enter First Name: '
