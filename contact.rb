@@ -56,6 +56,10 @@ class Contact
     return "#{@first_name} #{@last_name}"
   end
 
+  def full_info
+    return "#{@first_name} #{@last_name}, #{@email}, note: #{@note}"
+  end
+
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
   def delete

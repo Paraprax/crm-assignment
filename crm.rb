@@ -99,7 +99,7 @@ class CRM
   def display_all_contacts
       puts "Contacts:"
     @@contacts.each do |contact|
-      puts contact.full_name
+      puts contact.full_info
     end
     puts "End of Contacts list."
   end
@@ -110,13 +110,13 @@ class CRM
     puts "Contacts found:"
      @@contacts.each do |contact|
        if contact.first_name == input
-         puts contact.full_name
+         puts contact.full_info
        elsif contact.last_name == input
-          puts contact.full_name
+          puts contact.full_info
        elsif contact.email == input
-          puts contact.full_name
+          puts contact.full_info
        elsif contact.note == input
-          puts contact.full_name
+          puts contact.full_info
        else
        end
 
