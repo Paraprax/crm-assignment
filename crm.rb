@@ -1,30 +1,23 @@
 require_relative "contact.rb"
+
 class CRM
-  @@contacts=[]
+
   def initialize
-       contact1=Contact.new('Parker', 'Johnston', 'pj@email.com', 'dude')
-       contact2=Contact.new('Jane', 'Smith', 'js@email.com', 'gal')
-       contact3=Contact.new('Bill', 'Steel', 'bs@email.com', 'bro')
-       contact4=Contact.new('Mary', 'Doe', 'md@email.com', 'lady')
-       @@contacts << contact1
-       @@contacts << contact2
-       @@contacts << contact3
-       @@contacts << contact4
+    contact1=Contact.create('Parker', 'Johnston', 'pj@email.com', 'dude')
+    contact2=Contact.create('Jane', 'Smith', 'js@email.com', 'gal')
+    contact3=Contact.create('Bill', 'Steel', 'bs@email.com', 'bro')
+    contact4=Contact.create('Mary', 'Doe', 'md@email.com', 'lady')
+
+    @run = true
+
   end
-
-
-  attr_reader :first_name
-  attr_reader :last_name
-  attr_accessor :email
-  attr_accessor :note
 
   def main_menu
-    while true # repeat indefinitely
-    print_main_menu
-    user_selected = gets.to_i
-    call_option(user_selected)
-  end
-
+    while @run == true # repeat indefinitely
+      print_main_menu
+      user_selected = gets.to_i
+      call_option(user_selected)
+    end
   end
 
   def print_main_menu
@@ -35,21 +28,18 @@ class CRM
     puts '[5] Search by attribute'
     puts '[6] Exit'
     puts 'Enter a number: '
-
   end
 
   def call_option(user_selected)
-  case user_selected
-  when 1 then contact=add_new_contact #done
-  when 2 then modify_existing_contact #unfinished
-  when 3 then delete_contact #done
-  when 4 then display_all_contacts #done
-  when 5 then search_by_attribute #done
-  when 6 then quit #not working
+    case user_selected
+    when 1 then contact=add_new_contact #done
+    when 2 then modify_existing_contact #unfinished
+    when 3 then delete_contact #done
+    when 4 then display_all_contacts #done
+    when 5 then search_by_attribute #done
+    when 6 then quit #done
+    end
   end
-
-  end
-
 
   def add_new_contact
     puts 'Enter First Name: '
@@ -64,69 +54,61 @@ class CRM
     puts 'Enter a Note: '
       note = gets.chomp
 
-    contact=Contact.new(first_name, last_name, email, note)
-    @@contacts << contact
-
-    end
+    contact=Contact.create(first_name, last_name, email, note)
+  end
 
   def modify_existing_contact
-    puts 'Update First Name: '
-      first_name = gets.chomp
+    contact_to_modify = find_contact
+    if contact_to_modify
+      puts "Need method to present attribute to modify"
+    end
+  end
 
-    puts 'Update Last Name: '
-      last_name = gets.chomp
+  # def find_by_email
+  #   puts "Enter email of contact to find:"
+  #   input = gets.chomp
+  #    @@contacts.each do |contact|
+  #      if contact.email == input
+  #         return contact
+  #      end
+  #    end
+  #    return false
+  # end
 
-    puts 'Update Email Address: '
-      email = gets.chomp
-
-    puts 'Update contact Note: '
-      note = gets.chomp
-
+  def find_contact
+    puts "Enter id of contact to find:"
+    id = gets.chomp
+    contact = Contact.find(id)
   end
 
   def delete_contact
-    puts "Enter email of contact to delete:"
-    input = gets.chomp
-     @@contacts.each do |contact|
-       if contact.email == input
-          @@contacts.delete(contact)
-        else
-       end
-     end
-
+    contact_to_delete = find_contact
+    if contact_to_delete
+      contact_to_delete.delete
+      puts "Contact deleted."
+    else
+      puts "Contact not found."
+    end
   end
 
   def display_all_contacts
       puts "Contacts:"
-    @@contacts.each do |contact|
-      puts contact.full_info
-    end
+      Contact.print_all_contacts
     puts "End of Contacts list."
   end
 
   def search_by_attribute
-    puts "Enter attribute of contact to display:"
+    puts "Enter a contact's first name, last name or other stored info:"
     input = gets.chomp
+    Contact.find_by
     puts "Contacts found:"
-     @@contacts.each do |contact|
-       if contact.first_name == input
-         puts contact.full_info
-       elsif contact.last_name == input
-          puts contact.full_info
-       elsif contact.email == input
-          puts contact.full_info
-       elsif contact.note == input
-          puts contact.full_info
-       else
-       end
 
   end
 
   def quit
-    quit
+    @run = false
+    main_menu
   end
-
-end
 
 end
 
