@@ -11,17 +11,11 @@ class Contact
 
   end
 
+  attr_reader :first_name
+  attr_reader :last_name
+  attr_accessor :email
+  attr_accessor :note
 
-
-
-  # This method should call the initializer,
-  # store the newly created contact, and then return it
-  def self.create(first_name, last_name, email, note)
-
-    @id = @@id
-    @@id += 1
-
-  end
 
   # This method should return all of the existing contacts
   def self.all

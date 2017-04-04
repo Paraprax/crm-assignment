@@ -30,20 +30,14 @@ class CRM
 
   end
 
-  def display_all_contacts
-    @@contacts.each do |contact|
-      puts contact.full_name
-    end
-  end
-
   def call_option(user_selected)
   case user_selected
-  when 1 then contact=add_new_contact
+  when 1 then contact=add_new_contact #done
   when 2 then modify_existing_contact
-  when 3 then delete_contact
-  when 4 then display_all_contacts
+  when 3 then delete_contact #done
+  when 4 then display_all_contacts #done
   when 5 then search_by_attribute
-  when 6 then quit
+  when 6 then quit #done
   end
 
   end
@@ -86,16 +80,47 @@ class CRM
   def delete_contact
     puts "Enter email of contact to delete:"
     input = gets.chomp
-    
+     @@contacts.each do |contact|
+       if contact.email == input
+          @@contacts.delete(contact)
+        else
+          puts "contact not found"
+       end
+     end
 
+  end
 
+  def display_all_contacts
+      puts "Contacts:"
+    @@contacts.each do |contact|
+      puts contact.full_name
+    end
+    puts "End of Contacts list."
   end
 
   def search_by_attribute
+    puts "Enter attribute of contact to display:"
+    input = gets.chomp
+     @@contacts.each do |contact|
+       if contact.first_name == input
+         puts contact.full_name
+       elsif contact.last_name == input
+          puts contact.full_name
+        elsif contact.email == input
+          puts contact.full_name
+        elsif contact.note == input
+          puts contact.full_name
+        else
+          puts "contact not found"
+       end
 
   end
 
+  def quit
+    @quit = puts "quit"
+  end
 
+end
 
 end
 
