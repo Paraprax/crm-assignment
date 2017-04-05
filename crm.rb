@@ -34,7 +34,7 @@ class CRM
   def call_option(user_selected)
     case user_selected
     when 1 then contact=add_new_contact #done
-    when 2 then modify_existing_contact #unfinished
+    when 2 then modify_existing_contact #done
     when 3 then delete_contact #done
     when 4 then display_all_contacts #done
     when 5 then search_by_attribute #done
