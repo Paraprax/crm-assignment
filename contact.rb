@@ -65,31 +65,35 @@ class Contact
 
   def self.find_by_id(contactid)
     @@contacts.each do |contact|
-      if contact.id == contactid
+      if contact.id == contactid.to_i
         puts contact.print_contact
+        return contact
       else
       end
     end
   end
 
 
-  def modify_selected_contact(attribute, value)
-    case attribute
-    when 1
-      self.first_name = value
-    when 2
-      self.last_name = value
-    when 3
-      self.email = value
-    when 4
-      self.note = value
-    end
-  end
+
 
   # This method should delete all of the contacts
   def self.delete_all
     @@contacts.clear
   end
+
+
+      def update(attribute, value)
+        case attribute
+        when "first_name"
+          self.first_name = value
+        when "last_name"
+          self.last_name = value
+        when "email"
+          self.email = value
+        when "note"
+          self.note = value
+        end
+      end
 
 
   # Instance variables and methods
@@ -109,12 +113,12 @@ class Contact
     @@id += 1
   end
 
+
+
   # This method should allow you to specify
   # 1. which of the contact's attributes you want to update
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
-  def update
-  end
 
   def full_name
     puts "#{first_name} #{last_name}"

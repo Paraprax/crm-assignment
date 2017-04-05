@@ -60,8 +60,7 @@ class CRM
 
   def modify_existing_contact
     puts "Enter id number of contact to be modified"
-    input = gets.to_i
-
+    input = gets
 
     if Contact.find_by_id(input) == false
       puts "Contact not found."
@@ -77,16 +76,20 @@ class CRM
       modrequest = gets.to_i
 
       case modrequest
-      when 1 then attribute = 1
-      when 2 then attribute = 2
-      when 3 then attribute = 3
-      when 4 then attribute = 4
+      when 1
+        attribute = "first_name"
+      when 2
+        attribute = "last_name"
+      when 3
+        attribute = "email"
+      when 4
+        attribute = "note"
       end
 
       puts "Enter updated information:"
           value = gets.chomp
 
-      Contact.find_by_id(input).modify_selected_contact(attribute, value)
+      Contact.find_by_id(input).update(attribute, value)
     end
   end
 
