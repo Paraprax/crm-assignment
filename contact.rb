@@ -42,19 +42,6 @@ class Contact
     end
   end
 
-
-  def self.find_by_id_or_email(input)
-        input = gets.chomp
-        puts "~ ~ ~ ~ ~ ~ ~ ~"
-        puts "Contact found:"
-    @@contacts.each do |contact|
-      if contact.id == input.to_i
-          puts contact.print_contact
-      else
-        end
-    end
-  end
-
   def self.delete_contact
     input = gets.chomp
     puts "~ ~ ~ ~ ~ ~ ~ ~"
@@ -63,6 +50,9 @@ class Contact
     if contact.id == input.to_i
       puts contact.print_contact
       puts contact.delete
+    elsif contact.email == input
+        puts contact.print_contact
+        puts contact.delete
     else
       end
     end

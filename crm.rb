@@ -92,7 +92,7 @@ class CRM
 
 
   def delete_contact
-    puts "Enter id number of contact to be deleted:"
+    puts "Enter id number or email of contact to be deleted:"
     Contact.delete_contact
       puts "Contact deleted."
   end
