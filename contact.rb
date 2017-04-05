@@ -121,12 +121,12 @@ class Contact
   end
 
   def print_contact
-    print "#{self.first_name} #{self.last_name}, #{self.email}, note: #{self.note}"
+    print "##{self.id}, #{self.first_name} #{self.last_name}, #{self.email}, note: #{self.note}"
   end
 
   def self.print_all_contacts
     @@contacts.each do |contact|
-      puts "#{contact.id}, #{contact.first_name} #{contact.last_name}, #{contact.email}, note: #{contact.note}"
+      puts "##{contact.id}, #{contact.first_name} #{contact.last_name}, #{contact.email}, note: #{contact.note}"
     end
   end
 
