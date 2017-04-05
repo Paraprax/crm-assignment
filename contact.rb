@@ -17,21 +17,15 @@ class Contact
 
   # This method should accept an id as an argument
   # and return the contact who has that id
-  def self.find(id)
-    @@contacts.each do |contact|
-      if contact.id == id
-         contact
-      end
-    end
-  end
 
   # This method should work similarly to the find method above
   # but it should allow you to search for a contact using attributes other than id
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
-  def self.find_by
+  def self.find_by_anything
         input = gets.chomp
-            puts "Contacts found:"
+        puts "~ ~ ~ ~ ~ ~ ~ ~"
+        puts "Contact found:"
     @@contacts.each do |contact|
       if contact.first_name == input
         puts contact.print_contact
@@ -44,19 +38,63 @@ class Contact
        elsif contact.id == input.to_i
           puts contact.print_contact
       else
-      end
+        end
     end
   end
 
-  def self.find
-    input = gets.chomp
+
+  def self.find_by_id_or_email(input)
+        input = gets.chomp
+        puts "~ ~ ~ ~ ~ ~ ~ ~"
+        puts "Contact found:"
     @@contacts.each do |contact|
-      if contact.id == input
-        return contact
+      if contact.id == input.to_i
+          puts contact.print_contact
+      else
+        end
+    end
+  end
+
+  def self.delete_contact
+    input = gets.chomp
+    puts "~ ~ ~ ~ ~ ~ ~ ~"
+    puts "Contact found:"
+@@contacts.each do |contact|
+    if contact.id == input.to_i
+      puts contact.print_contact
+      puts contact.delete
+    else
       end
     end
   end
 
+  def delete
+    @@contacts.delete(self)
+  end
+
+
+  def self.find_by_id(contactid)
+    @@contacts.each do |contact|
+      if contact.id == contactid
+        puts contact.print_contact
+      else
+      end
+    end
+  end
+
+
+  def modify_selected_contact(attribute, value)
+    case attribute
+    when 1
+      self.first_name = value
+    when 2
+      self.last_name = value
+    when 3
+      self.email = value
+    when 4
+      self.note = value
+    end
+  end
 
   # This method should delete all of the contacts
   def self.delete_all
@@ -93,7 +131,7 @@ class Contact
   end
 
   def print_contact
-    puts "#{self.first_name} #{self.last_name}, #{self.email}, note: #{self.note}"
+    print "#{self.first_name} #{self.last_name}, #{self.email}, note: #{self.note}"
   end
 
   def self.print_all_contacts
@@ -105,10 +143,7 @@ class Contact
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
 
-  def delete
-    @@contacts.delete(self)
-    return true
-  end
+
 
   # Feel free to add other methods here, if you need them.
 

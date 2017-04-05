@@ -9,6 +9,7 @@ class CRM
     contact4=Contact.create('Mary', 'Doe', 'md@email.com', 'lady')
 
     @run = true
+    @modding = true
 
   end
 
@@ -58,35 +59,56 @@ class CRM
   end
 
   def modify_existing_contact
-    puts "Enter id of contact to be modified"
-    Contact.find
-  end
+    puts "Enter id number of contact to be modified"
+    input = gets.to_i
 
-  def find_contact
-    puts "Enter email of contact to find:"
-    input = gets.chomp
-    contact = Contact.find(input)
-  end
 
-  def delete_contact
-    contact_to_delete = find_contact
-    if contact_to_delete
-      contact_to_delete.delete
-      puts "Contact deleted."
-    else
+    if Contact.find_by_id(input) == false
       puts "Contact not found."
+    else
+
+      puts "Which attribute would you like to update?"
+      puts "[1] First name"
+      puts "[2] Last name"
+      puts "[3] Email address"
+      puts "[4] Note"
+      puts "[5] Cancel"
+
+      modrequest = gets.to_i
+
+      case modrequest
+      when 1 then attribute = 1
+      when 2 then attribute = 2
+      when 3 then attribute = 3
+      when 4 then attribute = 4
+      end
+
+      puts "Enter updated information:"
+          value = gets.chomp
+
+      Contact.find_by_id(input).modify_selected_contact(attribute, value)
     end
   end
 
+
+  def delete_contact
+    puts "Enter id number of contact to be deleted:"
+    Contact.delete_contact
+      puts "Contact deleted."
+  end
+
   def display_all_contacts
+      puts "~ ~ ~ ~ ~ ~ ~ ~"
       puts "Contacts:"
       Contact.print_all_contacts
-    puts "End of Contacts list."
+      puts "End of Contacts list."
+      puts "~ ~ ~ ~ ~ ~ ~ ~"
   end
 
   def search_by_attribute
     puts "Enter a contact's id, first name, last name or other stored info:"
-    Contact.find_by
+    Contact.find_by_anything
+    puts "~ ~ ~ ~ ~ ~ ~ ~"
   end
 
 
